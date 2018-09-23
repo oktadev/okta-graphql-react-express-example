@@ -18,15 +18,8 @@ const client = new Client({
   token: process.env.REACT_APP_OKTA_TOKEN,
 });
 
-const AUTHORS = {
-  1: { id: 1, name: "John Doe" },
-  2: { id: 2, name: "Jane Doe" },
-};
-
-const POSTS = [
-  { authorId: 1, body: "Hello world" },
-  { authorId: 2, body: "Hi, planet!" },
-];
+const AUTHORS = {};
+const POSTS = [];
 
 const schema = buildASTSchema(gql`
   type Query {
