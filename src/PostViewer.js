@@ -13,7 +13,11 @@ export const GET_POSTS = gql`
   }
 `;
 
-export default () => (
+const rowStyles = (post, canEdit) => canEdit(post)
+  ? { cursor: 'pointer', fontWeight: 'bold' }
+  : {};
+
+const PostViewer = ({ canEdit, onEdit }) => (
   <Query query={GET_POSTS}>
     {({ loading, data }) => !loading && (
       <Table>
@@ -25,7 +29,11 @@ export default () => (
         </thead>
         <tbody>
           {data.posts.map(post => (
-            <tr key={post.id}>
+            <tr
+              key={post.id}
+              style={rowStyles(post, canEdit)}
+              onClick={() => canEdit(post) && onEdit(post)}
+            >
               <td>{post.author}</td>
               <td>{post.body}</td>
             </tr>
@@ -35,3 +43,10 @@ export default () => (
     )}
   </Query>
 );
+
+PostViewer.defaultProps = {
+  canEdit: () => false,
+  onEdit: () => null,
+};
+
+export default PostViewer;
