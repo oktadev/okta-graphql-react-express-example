@@ -1,19 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import {
+  Table,
+} from 'reactstrap';
+
+const GET_POSTS = gql`
+  query GetPosts {
+    posts {
+      id
+      author
+      body
+    }
+  }
+`;
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Query query={GET_POSTS}>
+        {({ loading, data }) => !loading && (
+          <Table>
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Body</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.posts.map(post => (
+                <tr key={post.id}>
+                  <td>{post.author}</td>
+                  <td>{post.body}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
+      </Query>
     );
   }
 }
