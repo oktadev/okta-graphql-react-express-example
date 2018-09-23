@@ -25,8 +25,8 @@ const SUBMIT_POST = gql`
 
 const PostEditor = ({ post, onClose }) => (
   <FinalForm
-    onSubmit={async ({ id, author, body }) => {
-      const input = { id, author, body };
+    onSubmit={async ({ id, body }) => {
+      const input = { id, body };
 
       await client.mutate({
         variables: { input },
@@ -44,15 +44,6 @@ const PostEditor = ({ post, onClose }) => (
             {post.id ? 'Edit Post' : 'New Post'}
           </ModalHeader>
           <ModalBody>
-            <FormGroup>
-              <Label>Author</Label>
-              <Field
-                required
-                name="author"
-                className="form-control"
-                component="input"
-              />
-            </FormGroup>
             <FormGroup>
               <Label>Body</Label>
               <Field

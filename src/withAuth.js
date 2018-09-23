@@ -1,6 +1,8 @@
 import React from 'react';
 import { withAuth } from '@okta/okta-react';
 
+import { updateAuth } from './apollo';
+
 export default Component => withAuth(class WithAuth extends React.Component {
   state = {
     ...this.props.auth,
@@ -18,6 +20,8 @@ export default Component => withAuth(class WithAuth extends React.Component {
   }
 
   async updateAuth() {
+    updateAuth(this.props.auth);
+
     const authenticated = await this.props.auth.isAuthenticated();
     if (authenticated !== this.state.authenticated) {
       const user = await this.props.auth.getUser();

@@ -46,7 +46,7 @@ class App extends Component {
           </Button>
         )}
         <PostViewer
-          canEdit={() => true}
+          canEdit={(post) => user && user.sub === post.author.id}
           onEdit={(post) => this.setState({ editing: post })}
         />
         {editing && (

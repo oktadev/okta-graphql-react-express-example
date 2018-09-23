@@ -7,7 +7,10 @@ export const GET_POSTS = gql`
   query GetPosts {
     posts {
       id
-      author
+      author {
+        id
+        name
+      }
       body
     }
   }
@@ -34,7 +37,7 @@ const PostViewer = ({ canEdit, onEdit }) => (
               style={rowStyles(post, canEdit)}
               onClick={() => canEdit(post) && onEdit(post)}
             >
-              <td>{post.author}</td>
+              <td>{post.author.name}</td>
               <td>{post.body}</td>
             </tr>
           ))}
