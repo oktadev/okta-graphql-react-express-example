@@ -20,9 +20,9 @@
     tiny-emitter "1.1.0"
     xhr2 "0.1.3"
 
-"@okta/okta-react@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@okta/okta-react/-/okta-react-1.1.0.tgz#5cac911316dcc9fcd354471952e0ec3403238e3c"
+"@okta/okta-react@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@okta/okta-react/-/okta-react-1.1.1.tgz#0752e135aaddf08f433c622bb4801325c9f34d76"
   dependencies:
     "@okta/okta-auth-js" "^2.0.0"
     babel-runtime "^6.26.0"
