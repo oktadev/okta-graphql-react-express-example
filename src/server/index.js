@@ -24,7 +24,7 @@ const POSTS = [];
 const schema = buildASTSchema(gql`
   type Query {
     posts: [Post]
-    post(id: ID): Post
+    post(id: ID!): Post
   }
 
   type Mutation {
@@ -33,7 +33,7 @@ const schema = buildASTSchema(gql`
 
   input PostInput {
     id: ID
-    body: String
+    body: String!
   }
 
   type Post {
