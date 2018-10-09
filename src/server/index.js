@@ -18,13 +18,20 @@ const client = new Client({
   token: process.env.REACT_APP_OKTA_TOKEN,
 });
 
-const AUTHORS = {};
-const POSTS = [];
+const AUTHORS = {
+  1: { id: 1, name: "John Doe" },
+  2: { id: 2, name: "Jane Doe" },
+};
+
+const POSTS = [
+  { authorId: 1, body: "Hello world" },
+  { authorId: 2, body: "Hi, planet!" },
+];
 
 const schema = buildASTSchema(gql`
   type Query {
     posts: [Post]
-    post(id: ID!): Post
+    post(id: ID): Post
   }
 
   type Mutation {
@@ -33,7 +40,7 @@ const schema = buildASTSchema(gql`
 
   input PostInput {
     id: ID
-    body: String!
+    body: String
   }
 
   type Post {
@@ -85,6 +92,8 @@ const root = {
     let index = POSTS.length;
 
     if (id != null && id >= 0 && id < POSTS.length) {
+      if (POSTS[id].authorId !== authorId) return null;
+
       POSTS.splice(id, 1, post);
       index = id;
     } else {
