@@ -11,7 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 To install this example application, run the following commands:
 
 ```bash
-git clone git@github.com:oktadeveloper/okta-graphql-react-express-example.git
+git clone https://github.com/oktadev/okta-graphql-react-express-example.git
 cd okta-graphql-react-express-example
 yarn
 ```
